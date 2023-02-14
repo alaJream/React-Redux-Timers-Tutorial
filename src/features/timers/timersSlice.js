@@ -19,9 +19,18 @@ export const timersSlice = createSlice({
           },
           
     },
+          update: (state, action) => {
+            state.value.forEach(timer => {
+            if (timer.isRunning) {
+                timer.time += action.payload
+            }
+            })
+          }
   })
 
+
+
 // Action creators are generated for each case reducer function
-export const { addTimer, toggleTimer } = timersSlice.actions
+export const { addTimer, toggleTimer, update } = timersSlice.actions
 
 export default timersSlice.reducer
