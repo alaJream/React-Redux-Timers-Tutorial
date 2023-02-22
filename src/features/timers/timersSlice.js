@@ -14,18 +14,20 @@ export const timersSlice = createSlice({
         state.value.push(new Timer(action.payload))
       },
   
-          toggleTimer: (state, action) => {
-              state.value[action.payload].isRunning = !state.value[action.payload].isRunning
-          },
+      toggleTimer: (state, action) => {
+          state.value[action.payload].isRunning = !state.value[action.payload].isRunning
+      },
+      
+      update: (state, action) => {
+        state.value.forEach(timer => {
+        if (timer.isRunning) {
+            timer.time += action.payload
+        }
+        })
+      }
           
     },
-          update: (state, action) => {
-            state.value.forEach(timer => {
-            if (timer.isRunning) {
-                timer.time += action.payload
-            }
-            })
-          }
+          
   })
 
 
